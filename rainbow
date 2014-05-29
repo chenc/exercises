@@ -1,0 +1,53 @@
+/*
+ * Assignment 2: Rainbow.java
+ * −−−−−−−−−−−−−−−−−−
+ * This program displays a rainbow by adding consecutively
+ * smaller circles to the canvas using an array. 
+ */
+
+import java.awt.Color;
+import acm.graphics.GOval;
+import acm.graphics.GRect;
+import acm.program.*;
+
+public class Rainbow extends GraphicsProgram {
+
+  public static final int SUN_RADIUS = 80;
+  public static final int BAND_WIDTH = 20;
+  public static final int RAINBOW_OVERHANG = 380;
+  public static final int RAINBOW_OFFSET = 150;
+ 
+  public void run() {
+    // Creating a sky with a GRect method
+    drawSky (Color.CYAN);
+ 
+    // Creating a sky with a GOval method
+    // drawCircle (220, 220, 510, Color.CYAN);
+ 
+    Color[] colors = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, 
+    Color.BLUE, Color.MAGENTA, Color.CYAN};
+
+    for (int i=0; i<colors.length; i++){
+      drawCircle (getWidth()/2, getHeight() + RAINBOW_OFFSET, 
+      ((getWidth()+RAINBOW_OVERHANG)/2)−(i*BAND_WIDTH), colors[i]);
+    }
+ 
+    // Creating a cute, little sun in the corner using the GOval method
+    drawCircle (0, 0, SUN_RADIUS, Color.YELLOW);
+  }
+
+  private void drawCircle(int x, int y, int r, Color acolor) { 
+    GOval myCircle = new GOval(x−r, y−r, r*2, r*2);
+    myCircle.setFilled(true);
+    myCircle.setColor(acolor);
+    add (myCircle); 
+  }
+
+  private void drawSky(Color skycolor) {
+    GRect mySky = new GRect(0, 0, getWidth(), getHeight());
+    mySky.setFilled(true);
+    mySky.setColor(skycolor);
+    add (mySky);
+  }
+  
+}
