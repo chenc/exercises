@@ -1,0 +1,56 @@
+//Stanford Karel: Unit 12: Lesson 1
+//Karel finds the midpoint in the world. It is not the center.
+
+function main() {
+	markWalls();
+	putBeepersDown();
+	turnAround();
+	move();
+	putBeeper();
+	turnAround();
+	goToWall();
+	turnAround();
+	lastBeeperStanding();
+}
+
+//Karel moves to end walls, marking them with beepers
+
+function markWalls() {
+	goToWall();
+	putBeeper();
+	turnAround();
+	goToWall();
+	putBeeper();
+	turnAround();
+	move();
+}
+
+function goToWall() {
+	while(frontIsClear()) {
+		move();
+	}
+}
+
+//Karel starts putting beepers down to find the midpoint of the world.
+
+function putBeepersDown() {
+	while(noBeepersPresent()) {
+		move();
+		if (beepersPresent()) {
+			turnAround();
+			move();
+			putBeeper();
+			move();
+		}
+	}
+}
+
+function lastBeeperStanding() {
+	while (frontIsClear()) {
+		if (beepersPresent()) {
+			pickBeeper();
+		}
+		move();
+	}
+	pickBeeper();
+}
