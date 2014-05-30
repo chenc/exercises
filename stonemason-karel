@@ -1,0 +1,51 @@
+import stanford.karel.*;
+ 
+public class StoneMasonKarel extends SuperKarel {
+
+    public void run() {
+      //putting beepers into the broken columns in the world
+      while (frontIsClear()) {
+        topOfColumn();
+        putBeeperInColumn();
+        nextColumn();
+      }
+      topOfColumn();
+      putBeeperInColumn();
+    }
+ 
+    public void topOfColumn() {
+      //getting to the top of the Column
+      turnLeft();
+      goToWall();
+      turnAround();
+    }
+    
+    public void putBeeperInColumn() {
+      //putting beepers into the empty parts of the column
+      while (frontIsClear()) {
+        if (noBeepersPresent()) {
+          putBeeper();
+        }
+        move();
+      }
+      if (noBeepersPresent()) {
+        putBeeper();
+      }
+    }
+    
+    public void goToWall() {
+      while(frontIsClear()){
+        move();
+      }
+    }
+    
+    public void nextColumn() {
+      //going to the next column in the world
+      turnLeft();
+      move();
+      move();
+      move();
+      move();
+    }
+ 
+}
