@@ -1,0 +1,119 @@
+function main() {
+   if(beepersPresent()) {     //this if statement solves the fencepost error
+      buildColumn();
+   }
+   while(frontIsClear()) {
+      move();
+      if(beepersPresent()) {
+         buildColumn();
+      }
+   }
+}
+
+function buildColumn() {
+      turnLeft();
+      move();
+      beeperLine();
+      putBeeper();
+      turnAround();
+      goToWall();
+      turnLeft();
+      move();
+}
+
+function beeperLine() {
+   while (frontIsClear()){
+      putBeeper();
+      move();
+   }
+}
+
+function goToWall() {
+   while (frontIsClear()){
+      move();
+   }
+}
+
+
+//This code improves on the previous one by putting the 'checkBeeper' 
+//if statement inside the 'buildColumn' function and renaming the 
+//'buildColumn' function, 'buildColumnIfNeeded'.
+
+function main() {
+   buildColumnIfNeeded();
+   while(frontIsClear()) {
+      move();
+      buildColumnIfNeeded();
+   }
+}
+
+function buildColumnIfNeeded() {
+   if (beepersPresent()) {
+      turnLeft();
+      move();
+      beeperLine();
+      putBeeper();
+      turnAround();
+      goToWall();
+      turnLeft();
+      move();
+   }
+}
+
+function beeperLine() {
+   while (frontIsClear()){
+      putBeeper();
+      move();
+   }
+}
+
+function goToWall() {
+   while (frontIsClear()){
+      move();
+   }
+}
+
+
+//Lastly, there is an entirely different construct known as the loop and a half 
+//that is a bit outside the scope what is in the Stanford Karel game:
+
+function main() {
+   while(True) {
+      buildColumnIfNeeded();
+      if (frontIsClear())
+         move();
+      else
+         break;
+   }
+   buildColumnIfNeeded();
+   while(frontIsClear()) {
+      move();
+      buildColumnIfNeeded();
+   }
+}
+
+function buildColumnIfNeeded() {
+   if (beepersPresent()) {
+      turnLeft();
+      move();
+      beeperLine();
+      putBeeper();
+      turnAround();
+      goToWall();
+      turnLeft();
+      move();
+   }
+}
+
+function beeperLine() {
+   while (frontIsClear()){
+      putBeeper();
+      move();
+   }
+}
+
+function goToWall() {
+   while (frontIsClear()){
+      move();
+   }
+}
